@@ -1,0 +1,27 @@
+{
+  "name": "linter-plus-coffeelint",
+  "main": "./lib/linter-plus-coffeelint",
+  "version": "0.0.0",
+  "description": "A Coffeelint interface for `linter-plus`",
+  "keywords": [
+    "linter",
+    "coffeelint",
+    "coffeescript",
+    "linter-plus"
+  ],
+  "repository": "https://github.com/iam4x/linter-plus-coffeelint",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "dependencies": {
+    "coffeelint": "^1.9.7"
+  },
+  "providedServices": {
+    "linter.plus": {
+      "versions": {
+        "0.1.0": "provideLinter"
+      }
+    }
+  }
+}
