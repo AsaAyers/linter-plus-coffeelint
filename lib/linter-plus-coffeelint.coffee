@@ -37,10 +37,10 @@ module.exports = LinterPlusCoffeelint =
           # without the indentation at begining of line
           indentLevel = TextEditor.indentationForBufferRow(lineNumber - 1)
 
-          statCol = (TextEditor.getTabLength() * indentLevel) + 1
+          startCol = (TextEditor.getTabLength() * indentLevel) + 1
           endCol = TextBuffer.lineLengthForRow(lineNumber - 1)
 
-          range = [[lineNumber, statCol], [lineNumber, endCol]]
+          range = [[lineNumber, startCol], [lineNumber, endCol]]
 
           return new Error message, filePath, range, []
       catch error
