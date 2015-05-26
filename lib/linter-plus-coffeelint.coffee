@@ -32,9 +32,17 @@ module.exports = LinterPlusCoffeelint =
 
         results.map ({message, lineNumber, context, column}) ->
           message = "#{message}. #{context}" if context
-          column = 0 unless column
 
-          new Error(message, filePath, [[lineNumber, column], [lineNumber, column]], [])
+          # Calculate range to make the error whole line
+          # without the indentation at begining of line
+          indentLevel = TextEditor.indentationForBufferRow(lineNumber - 1)
+
+          statCol = (TextEditor.getTabLength() * indentLevel) + 1
+          endCol = TextBuffer.lineLengthForRow(lineNumber - 1)
+
+          range = [[lineNumber, statCol], [lineNumber, endCol]]
+
+          return new Error message, filePath, range, []
       catch error
         console.warn('[Liner+ Coffeelint] error while linting file')
         console.warn(error)
